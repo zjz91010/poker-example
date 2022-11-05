@@ -10,7 +10,7 @@ func main() {
 	// fmt.Printf("%v\n", "好牌")
 
 	newCards := computer.CreateNewCards()
-	// fmt.Printf("构造一副牌:%v, %d张\n", newCards, len(newCards))
+	fmt.Printf("构造一副牌:%v, %d张\n", newCards, len(newCards))
 	computer.Shuffle(newCards)
 	// fmt.Printf("洗牌后:%v, %d张\n", newCards, len(newCards))
 
