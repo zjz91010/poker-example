@@ -5,8 +5,8 @@ package model
 **/
 type CardData struct {
 	Color int //花色1-4方梅红黑,5大小王
-	Point int //牌值点数A-2-3-...-10-J-Q-K-小王14-大王15
-	Value int //(花色*100)+牌值点数，方便比较大小
+	Point int //牌点数A-2-3-...-10-J-Q-K-小王14-大王15
+	Value int //(花色*100)+牌点数，方便带花色比较大小[Value/100=整除是花色,Value%100=取模是牌点数]
 }
 
 /**
@@ -22,7 +22,9 @@ func NewCardData(index int) *CardData {
 
 /**
 传入牌的序号1-54
-为了显示牌101-115,(101:方块A,201:梅花A,301:红桃A,401:黑桃A,514:小王,515:大王)
+为了显示牌(101-113:方块A-K,201-213:梅花A-K,301-313:红桃A-K,401-413:黑桃A-K,514:小王,515:大王)
+向上取整math.Ceil(),向下取整math.Floor(),取完整后返回的并不是真正的整数，而是float64 类型，所以如果需要int 类型的话需要手动转换
+107/100=1(整除=花色),107%100=7(取模=牌点数)
 **/
 func toCardValue(index int) int {
 	val := 0
